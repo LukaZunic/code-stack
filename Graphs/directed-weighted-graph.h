@@ -1,5 +1,6 @@
 #pragma once
 #include<iostream>
+#include<vector>
 #include<map>
 #include<set>
 
@@ -63,6 +64,15 @@ class DWGraph{
             _adjacency_map[v1].insert(std::pair<vertex<T>, double>(v2, weight));
         }
 
+
+        /**
+         * @brief Function to fetch the value of the edge weight between two vertices
+         * 
+         * @param v1 Vertex object (start of edge)
+         * @param v2 Vertex object (end of edge)
+         * 
+         * @return A double, the value of the (v1, v2) edge
+         **/
         double edge_weight(T v1, T v2){
             for(auto map_element : _adjacency_map){
                 if(map_element.first._value == v1)
@@ -86,7 +96,33 @@ class DWGraph{
         }
 
         void show_vertices(){
-            for(auto map_element : _adjacency_map) std::cout << map_element.first._value;
+            for(auto map_element : _adjacency_map) std::cout << map_element.first._value << std::endl;
+        }
+
+        /**
+         * @brief Function to fetch the INSTANCES of objects representing the vertices in a graph
+         * @return A vector<vertex<T>> representing the collection of vertex objects
+         **/
+        std::vector<vertex<T>> get_vertices(){
+            std::vector<vertex<T>> return_vector;
+
+            for(auto map_element : _adjacency_map)
+                return_vector.push_back(map_element.first);
+
+            return return_vector;
+        }
+
+        /**
+         * @brief Function to fetch the VALUES of objects representing the vertices in a graph
+         * @return A vector<T> representing the collection of vertex values
+         **/
+        std::vector<int> get_vertices_values(){
+            std::vector<int> return_vector;
+
+            for(auto map_element : _adjacency_map)
+                return_vector.push_back(map_element.first._value);
+
+            return return_vector;
         }
 
 };
