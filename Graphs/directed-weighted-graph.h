@@ -22,7 +22,6 @@ struct vertex{
 
 template<typename T>
 class DWGraph{
-
     public:
 
         /**
@@ -38,15 +37,23 @@ class DWGraph{
         /**
          * @brief Add a new (and unique) vertex with no neighbors to the graph
          **/
-        void addVertex(T value){
+        void add_vertex(T value){
             _adjacency_map[vertex<T>(value)] = {};
         }
 
-        void showVertices(){
-            for(auto mapElement : _adjacency_map) std::cout << mapElement.first._value;
+        void show_vertices(){
+            for(auto map_element : _adjacency_map) std::cout << map_element.first._value;
         }
 
-        void addEdge(T v1, T v2, double weight){
+
+        /**
+         * @brief Overloaded addEdge function, if a vertex is not in the graph, it will be added automatically
+         * 
+         * @param v1 Vertex value (start of edge)
+         * @param v2 Vertex value (end of edge)
+         **/
+        void add_edge(T v1, T v2, double weight){
+            if(!(_adjacency_map.count(vertex<T>(v2)))) add_vertex(v2);
             _adjacency_map[vertex<T>(v1)].insert(std::pair<vertex<T>, double>(vertex<T>(v2), weight));
         }
 
@@ -56,10 +63,20 @@ class DWGraph{
          * @param v1 Vertex object (start of edge)
          * @param v2 Vertex object (end of edge)
          **/
-        void addEdge(vertex<T> v1, vertex<T> v2, double weight){
+        void add_edge(vertex<T> v1, vertex<T> v2, double weight){
             _adjacency_map[v1].insert(std::pair<vertex<T>, double>(v2, weight));
         }
 
 
+        void show_graph(){
+            for(auto map_element : _adjacency_map){
+                std::cout << map_element.first._value << " : ";
+
+                for(auto set_element : map_element.second)
+                    std::cout << "(" << set_element.first._value << ", weight=" << set_element.second << ") "; 
+
+                std::cout << "\n";
+            }
+        }
 
 };
