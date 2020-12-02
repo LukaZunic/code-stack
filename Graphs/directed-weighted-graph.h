@@ -41,10 +41,6 @@ class DWGraph{
             _adjacency_map[vertex<T>(value)] = {};
         }
 
-        void show_vertices(){
-            for(auto map_element : _adjacency_map) std::cout << map_element.first._value;
-        }
-
 
         /**
          * @brief Overloaded addEdge function, if a vertex is not in the graph, it will be added automatically
@@ -67,6 +63,16 @@ class DWGraph{
             _adjacency_map[v1].insert(std::pair<vertex<T>, double>(v2, weight));
         }
 
+        double edge_weight(T v1, T v2){
+            for(auto map_element : _adjacency_map){
+                if(map_element.first._value == v1)
+                    for(auto set_element : map_element.second)
+                        if(set_element.first._value == v2)
+                            return set_element.second; 
+            }
+            throw "Edge does not have weight";
+        }
+
 
         void show_graph(){
             for(auto map_element : _adjacency_map){
@@ -77,6 +83,10 @@ class DWGraph{
 
                 std::cout << "\n";
             }
+        }
+
+        void show_vertices(){
+            for(auto map_element : _adjacency_map) std::cout << map_element.first._value;
         }
 
 };
