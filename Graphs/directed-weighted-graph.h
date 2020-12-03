@@ -1,6 +1,7 @@
 #pragma once
 #include<iostream>
 #include<vector>
+#include<queue>
 #include<map>
 #include<set>
 
@@ -86,17 +87,16 @@ class DWGraph{
                         }
                     }
                 }
-                
             }
         }
 
+        void delete_graph(){
+            _adjacency_map = {};
+        }
 
         /**************************************/
 
     
-        
-
-
         /* SHOWING GRAPH COMPONENTS */
 
         void show_graph(){
@@ -172,5 +172,36 @@ class DWGraph{
             throw "Edge does not have weight";
         }
         /**************************************/
+
+
+        /** GRAPH ALGORITHMS **/
+
+        std::map<T, bool> DFS(T starting_vertex){
+
+            std::queue<T> Q;
+            std::map<T, bool> visited;
+            Q.push(starting_vertex);
+
+            for(auto map_element : this->_adjacency_map){
+                visited[map_element.first._value] = false;
+            }
+            visited[starting_vertex] = true;
+
+            T temp;
+            while(!Q.empty()){
+                temp = Q.front();
+                Q.pop();
+                
+                for(auto i : this->_adjacency_map[temp]){
+                    if(!visited[i.first._value]){
+                        Q.push(i.first._value);
+                        visited[i.first._value] = true;
+                    }
+                }
+            }   
+
+            return visited;
+        }
+
 
 };
