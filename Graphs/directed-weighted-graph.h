@@ -72,15 +72,22 @@ class DWGraph{
                 throw "Vertex is not in graph";
             }else{
 
-                
-
                 // removing vertex from graph
                 _adjacency_map.erase(vertex<T>(v));
-
-            }
                 
-            
-
+                // removing all edges containing deleted vertex
+                for(auto map_element : _adjacency_map){
+                    auto it = map_element.second.begin();
+                    while (it != map_element.second.end()){
+                        if ((*it).first._value == v) {
+                            it = map_element.second.erase(it);
+                        }else{
+                            ++it;
+                        }
+                    }
+                }
+                
+            }
         }
 
 
