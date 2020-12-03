@@ -34,6 +34,10 @@ class DWGraph{
 
         // Default constructor
         DWGraph(){}
+        
+
+
+        /* ALTERING GRAPH */
 
         /**
          * @brief Add a new (and unique) vertex with no neighbors to the graph
@@ -41,7 +45,6 @@ class DWGraph{
         void add_vertex(T value){
             _adjacency_map[vertex<T>(value)] = {};
         }
-
 
         /**
          * @brief Overloaded addEdge function, if a vertex is not in the graph, it will be added automatically
@@ -64,25 +67,30 @@ class DWGraph{
             _adjacency_map[v1].insert(std::pair<vertex<T>, double>(v2, weight));
         }
 
+        void delete_vertex(T v){
+            if(!(_adjacency_map.count(vertex<T>(v)))){
+                throw "Vertex is not in graph";
+            }else{
 
-        /**
-         * @brief Function to fetch the value of the edge weight between two vertices
-         * 
-         * @param v1 Vertex object (start of edge)
-         * @param v2 Vertex object (end of edge)
-         * 
-         * @return A double, the value of the (v1, v2) edge
-         **/
-        double edge_weight(T v1, T v2){
-            for(auto map_element : _adjacency_map){
-                if(map_element.first._value == v1)
-                    for(auto set_element : map_element.second)
-                        if(set_element.first._value == v2)
-                            return set_element.second; 
+                
+
+                // removing vertex from graph
+                _adjacency_map.erase(vertex<T>(v));
+
             }
-            throw "Edge does not have weight";
+                
+            
+
         }
 
+
+        /**************************************/
+
+    
+        
+
+
+        /* SHOWING GRAPH COMPONENTS */
 
         void show_graph(){
             for(auto map_element : _adjacency_map){
@@ -98,6 +106,20 @@ class DWGraph{
         void show_vertices(){
             for(auto map_element : _adjacency_map) std::cout << map_element.first._value << std::endl;
         }
+
+        void show_edges(){
+            for(auto map_element : _adjacency_map){
+                for(auto set_element : map_element.second)
+                    if(!(map_element.second.empty()))
+                        std::cout << "(" <<  map_element.first._value << "," << set_element.first._value << ", weight=" << set_element.second << ")" << std::endl; 
+            }
+        }
+        /**************************************/
+
+
+
+
+        /* RETURNING GRAPH COMPONENT VALUES */
 
         /**
          * @brief Function to fetch the INSTANCES of objects representing the vertices in a graph
@@ -124,5 +146,24 @@ class DWGraph{
 
             return return_vector;
         }
+
+        /**
+         * @brief Function to fetch the value of the edge weight between two vertices
+         * 
+         * @param v1 Vertex object (start of edge)
+         * @param v2 Vertex object (end of edge)
+         * 
+         * @return A double, the value of the (v1, v2) edge
+         **/
+        double edge_weight(T v1, T v2){
+            for(auto map_element : _adjacency_map){
+                if(map_element.first._value == v1)
+                    for(auto set_element : map_element.second)
+                        if(set_element.first._value == v2)
+                            return set_element.second; 
+            }
+            throw "Edge does not have weight";
+        }
+        /**************************************/
 
 };
