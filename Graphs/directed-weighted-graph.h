@@ -176,6 +176,15 @@ class DWGraph{
 
         /** GRAPH ALGORITHMS **/
 
+
+        /**
+         * @brief Depth First Search is a traversing algorithm designed to visit all vertices connected with an arbitrarily given starting vertex.
+         * Commencing from the given vertex, the algorithm traverses the graph in a way where it goes as far as possible following on a path,
+         * then backtracking and traversing other possible paths
+         * 
+         * @param starting_vertex Starting vertex from which the algorithm commences
+         * @return map<T, bool>, map in form {vertex from graph, bool representing if the vertex had been visited during DFS}
+         **/
         std::map<T, bool> DFS(T starting_vertex){
 
             std::queue<T> Q;
