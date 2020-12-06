@@ -125,46 +125,4 @@ class DWGraph{
             return return_vector;
         }
 
-
-        void show_graph(){
-            for(auto map_element : _adjacency_map){
-                std::cout << map_element.first._value << " : ";
-
-                for(auto set_element : map_element.second)
-                    std::cout << "(" << set_element.first._value << ", weight=" << set_element.second << ") "; 
-
-                std::cout << "\n";
-            }
-        }
-
-        void show_vertices(){
-            for(auto map_element : _adjacency_map) std::cout << map_element.first._value << std::endl;
-        }
-
-        /**
-         * @brief Function to fetch the INSTANCES of objects representing the vertices in a graph
-         * @return A vector<vertex<T>> representing the collection of vertex objects
-         **/
-        std::vector<vertex<T>> get_vertices(){
-            std::vector<vertex<T>> return_vector;
-
-            for(auto map_element : _adjacency_map)
-                return_vector.push_back(map_element.first);
-
-            return return_vector;
-        }
-
-        /**
-         * @brief Function to fetch the VALUES of objects representing the vertices in a graph
-         * @return A vector<T> representing the collection of vertex values
-         **/
-        std::vector<int> get_vertices_values(){
-            std::vector<int> return_vector;
-
-            for(auto map_element : _adjacency_map)
-                return_vector.push_back(map_element.first._value);
-
-            return return_vector;
-        }
-
 };
