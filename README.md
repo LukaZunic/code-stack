@@ -6,11 +6,14 @@
     - [Summary](#summary)
     - [Features](#features)
     - [Depth First Search](#dfs)
+        - [Applications](#applications)
     
 
 # Installation
 To use the .h files in C++, download the file and use
-  `#include "NAME OF FILE"`
+  ```C++
+  #include "NAME OF FILE"
+  ```
 <br>In place of "template", "T" will be used in the remainder of document.
 
 # Graphs
@@ -39,4 +42,22 @@ Each edge can also have a number(that can also be negative) representing it's we
 | DFS                 | T                    | map<T,bool>       | [DFS](#dfs)                                                                                        |
   
 ## DFS
+
+Depth First Search is a traversing algorithm, meaning it can be use to visit vertices in a graph, possibly searching for a specific value or determining which vartices are disconnected from the graph.<br>
+DFS takes a starting point as input and then follows a simple algorithm to visit as many nodes as possible.<br>
+```C++
+for each vertex V in graph G:
+    mark V as unvisited
+for each vertex U which is a neighbor of V:
+    mark U as visited
+    DFS(U)
+```
+The algorithm runs in `O(|E| + |V|)` time where |E| and |V| represent the number of edges and vertices in the graph, respectively.<br>
+
+### Applications
+
+DFS is an algorithm humans use when solving a maze, following a path until reaching a wall, then backtracking and doing the same until a path that leads to a solution is found.<br>
+The same can be used in programming to both create a maze and to solve it.<br>
+
+Another application would be finding out which parts of a graph are disconnected by checking which vertices haven't been visited by the algorithm.<br>
 
