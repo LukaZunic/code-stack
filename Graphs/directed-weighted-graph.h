@@ -2,6 +2,7 @@
 #include<iostream>
 #include<vector>
 #include<queue>
+#include<stack>
 #include<map>
 #include<set>
 
@@ -80,7 +81,7 @@ class DWGraph{
                 for(auto map_element : _adjacency_map){
                     auto it = map_element.second.begin();
                     while (it != map_element.second.end()){
-                        if ((*it).first._value == v) {
+                        if ((*it).first._value == v){
                             it = map_element.second.erase(it);
                         }else{
                             ++it;
@@ -145,8 +146,8 @@ class DWGraph{
          * @brief Function to fetch the VALUES of objects representing the vertices in a graph
          * @return A vector<T> representing the collection of vertex values
          **/
-        std::vector<int> get_vertices_values(){
-            std::vector<int> return_vector;
+        std::vector<T> get_vertices_values(){
+            std::vector<T> return_vector;
 
             for(auto map_element : _adjacency_map)
                 return_vector.push_back(map_element.first._value);
@@ -176,7 +177,6 @@ class DWGraph{
 
         /** GRAPH ALGORITHMS **/
 
-
         /**
          * @brief Depth First Search is a traversing algorithm designed to visit all vertices connected with an arbitrarily given starting vertex.
          * Commencing from the given vertex, the algorithm traverses the graph in a way where it goes as far as possible following on a path,
@@ -186,6 +186,36 @@ class DWGraph{
          * @return map<T, bool>, map in form {vertex from graph, bool representing if the vertex had been visited during DFS}
          **/
         std::map<T, bool> DFS(T starting_vertex){
+
+            std::stack<T> S;
+            std::map<T, bool> visited;
+            S.push(starting_vertex);
+            
+            T temp;
+            while(!S.empty()){
+                temp = S.top();
+                S.pop();
+                if(!visited[temp]){
+                    visited[temp] = true;
+                    for(auto i : this->_adjacency_map[temp]){
+                        S.push(i.first._value);
+                    }
+                }
+            }
+
+            return visited;
+        }
+
+
+        /**
+         * @brief Breath First Search is a traversing algorithm designed to visit all vertices connected with an arbitrarily given starting vertex.
+         * Commencing from the given vertex, the algorithm traverses the graph in a way where it visits all the neighboring vertices of the current node,
+         * then repeating the same for each visited node whose neighbors haven't all been visited yet.
+         * 
+         * @param starting_vertex Starting vertex from which the algorithm commences
+         * @return map<T, bool>, map in form {vertex from graph, bool representing if the vertex had been visited during BFS}
+         **/
+        std::map<T, bool> BFS(T starting_vertex){
 
             std::queue<T> Q;
             std::map<T, bool> visited;
@@ -211,6 +241,8 @@ class DWGraph{
 
             return visited;
         }
+
+       
 
 
 };
