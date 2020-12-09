@@ -6,6 +6,7 @@
 #include<map>
 #include<set>
 
+#define INF 10000
 
 /**
  * @brief A standard container for the template value of a vertex
@@ -208,7 +209,7 @@ class DWGraph{
 
 
         /**
-         * @brief Breath First Search is a traversing algorithm designed to visit all vertices connected with an arbitrarily given starting vertex.
+         * @brief Breadth First Search is a traversing algorithm designed to visit all vertices connected with an arbitrarily given starting vertex.
          * Commencing from the given vertex, the algorithm traverses the graph in a way where it visits all the neighboring vertices of the current node,
          * then repeating the same for each visited node whose neighbors haven't all been visited yet.
          * 
@@ -242,6 +243,47 @@ class DWGraph{
             return visited;
         }
 
+
+        struct DijkstraOUTPUT{
+            int shortestDistance;
+            std::map<T,T> predecessorTree;
+        };
+
+        DijkstraOUTPUT Dijkstra(T start, T finish){
+
+            std::map<T, int> D;
+            std::map<T,T> predecessorTree;
+
+            for(auto map_element : _adjacency_map){
+                D[map_element.first._value] = INF;
+                predecessorTree[map_element.first._value] = -1;
+            }
+            D[start] = 0;
+
+            std::vector<T> S;
+            std::priority_queue<T> Q;
+
+            for(auto map_element : _adjacency_map){
+                Q.push(-1 * map_element.first._value);
+            }
+
+            while(!Q.empty()){
+
+                T u = -1 * Q.top();
+                Q.pop();
+                S.push_back(u);
+
+                for(auto set_element : _adjacency_map[vertex<T>(u)]){
+                    if(D[set_element.first._value] > D[u] + edge_weight(u, set_element.first._value)){
+                        D[set_element.first._value] = D[u] + edge_weight(u,set_element.first._value);
+                        predecessorTree[set_element.first._value] = u;
+                    }
+                }
+
+            }
+
+            return {D[finish], predecessorTree};
+        }
        
 
 
