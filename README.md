@@ -7,6 +7,8 @@
     - [Features](#features)
     - [Depth First Search](#dfs)
         - [Applications](#applications)
+    - [Path Finding](#path-finding)
+        - [Dijkstra's Algorithm](#dijkstra)
     
 
 # Installation
@@ -40,6 +42,7 @@ Each edge can also have a number(that can also be negative) representing it's we
 | get_vertices_values | -                    | vector<T>         | Returns a vector containing the values of the vertices within the graph                            |
 | edge_weight         | T,T                  | double            | Returns a double representing the weight of the edge connecting the vertices with the given values |
 | DFS                 | T                    | map<T,bool>       | [DFS](#dfs)                                                                                        |
+| Dijkstra            | T,T                  | DijkstraOUTPUT    | [Dijkstra](#dijkstra)                                                                              |
   
 ## DFS
 
@@ -60,4 +63,29 @@ DFS is an algorithm humans use when solving a maze, following a path until reach
 The same can be used in programming to both create a maze and to solve it.<br>
 
 Another application would be finding out which parts of a graph are disconnected by checking which vertices haven't been visited by the algorithm.<br>
+
+## Path Finding
+
+Path finding algorithm are designed to traverse the graph and determine the path, and if there is one, from one vertex to another.<br>
+These types of algorithms are usually modified to become **shortest path** algorithm determining the best path from vertex A to vertex B.<br>
+
+These algorithms prove themselves very useful when dealing with problems regarding graphs.<br>
+
+Maps are used to find shortest routes from one location to another, so if a map is turned into a graph, these algorithms can determine the best route, also the second best route and so on.<br>
+
+By making every intersection on the map a vertex, and every road an edge, a graph is formed.<br>
+
+To add a real life element to the graph, one way streets can be edges only going one way, not allowing a path to continue in the opposite way.<br>
+
+Weight can also be addes to signal the length of the road, conditions on the road, traffic and other real life components.<br>
+
+This data can all be processed by a shortest path finding algorithm to determine the best route from A to B.<br>
+
+![map graph](Graphs/assets/maps.png)
+
+
+
+### Dijkstra
+
+
 
