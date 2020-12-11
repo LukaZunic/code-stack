@@ -1,15 +1,15 @@
 # Code Stack 
 
 # Table of contents
-- [Installation](#installation)
-- [Graphs](#graphs)
+- [**Installation**](#installation)
+- [**Graphs**](#graphs)
     - [Summary](#summary)
     - [Features](#features)
     - [Depth First Search](#dfs)
         - [Applications](#applications)
     - [Path Finding](#path-finding)
         - [Dijkstra's Algorithm](#dijkstra)
-- [Binary Trees](#binary-trees)
+- [**Binary Trees**](#binary-trees)
     
 
 # Installation
