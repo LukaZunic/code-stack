@@ -9,6 +9,7 @@
         - [Applications](#applications)
     - [Path Finding](#path-finding)
         - [Dijkstra's Algorithm](#dijkstra)
+- [Binary Trees](#binary-trees)
     
 
 # Installation
@@ -87,5 +88,7 @@ This data can all be processed by a shortest path finding algorithm to determine
 
 ### Dijkstra
 
+
+### Binary Trees
 
 
