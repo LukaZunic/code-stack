@@ -1,0 +1,4 @@
+
+class DWGraph:    
+    _adjacencydict = {}
+
